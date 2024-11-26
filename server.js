@@ -1,70 +1,115 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors"); // Allow cross-origin requests
+const cors = require("cors");
+const jwt = require("jsonwebtoken"); // For authentication
+const bcrypt = require("bcrypt"); // For password hashing
 
 const app = express();
 const port = 3000;
 
 // Middleware
-app.use(cors()); // Allow requests from frontend
-app.use(bodyParser.json()); // Parse JSON payloads
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded payloads
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // In-Memory Data
-let recipes = [
-  {
-    id: 1,
-    title: "Spaghetti Bolognese",
-    description: "A classic Italian pasta dish.",
-    ingredients: ["Spaghetti", "Ground Beef", "Tomato Sauce", "Garlic"],
-    instructions: ["Boil spaghetti", "Cook beef", "Mix with sauce"],
-    category: "Italian",
-    prepTime: 30,
-    difficulty: "Medium",
-  },
-];
-
-let users = [
-  {
-    username: "john_doe",
-    email: "john@example.com",
-    favorites: [],
-  },
-];
+const users = [];
+const recipes = [];
+const SECRET_KEY = "supersecretkey"; // Secret for signing JWTs
 
 // Routes
 
-// Home Route
-app.get("/", (req, res) => {
-  res.send("Welcome to the Recipe Hub API!");
-});
+// Register a new user
+app.post("/auth/register", async (req, res) => {
+  const { username, email, password } = req.body;
 
-// Recipes API
-
-// Get all recipes
-app.get("/recipes", (req, res) => {
-  res.json({
-    success: true,
-    data: recipes,
-  });
-});
-
-// Get a specific recipe by ID
-app.get("/recipes/:id", (req, res) => {
-  const recipe = recipes.find((r) => r.id === parseInt(req.params.id));
-  if (!recipe) {
-    return res.status(404).json({ success: false, message: "Recipe not found" });
+  // Check if user already exists
+  const existingUser = users.find((user) => user.username === username || user.email === email);
+  if (existingUser) {
+    return res.status(400).json({ success: false, message: "User already exists" });
   }
-  res.json({
-    success: true,
-    data: recipe,
-  });
+
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Create a new user
+  const newUser = { id: users.length + 1, username, email, password: hashedPassword, favorites: [] };
+  users.push(newUser);
+
+  res.status(201).json({ success: true, message: "User registered successfully", user: { username, email } });
 });
+
+// Login a user
+app.post("/auth/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  // Find user by email
+  const user = users.find((u) => u.email === email);
+  if (!user) {
+    return res.status(400).json({ success: false, message: "Invalid email or password" });
+  }
+
+  // Check password
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return res.status(400).json({ success: false, message: "Invalid email or password" });
+  }
+
+  // Generate a JWT
+  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
+
+  res.json({ success: true, message: "Login successful", token });
+});
+
+// Middleware to verify JWT
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Access token required" });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: "Invalid token" });
+    }
+    req.user = user; // Attach user data to the request
+    next();
+  });
+};
+
+// Get current user's profile
+app.get("/profile", authenticateToken, (req, res) => {
+  const user = users.find((u) => u.id === req.user.id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+  res.json({ success: true, user: { id: user.id, username: user.username, email: user.email, favorites: user.favorites } });
+});
+
+// Update current user's profile
+app.put("/profile", authenticateToken, (req, res) => {
+  const { username, email } = req.body;
+  const user = users.find((u) => u.id === req.user.id);
+  if (!user) {
+    return res.status(404).json({ success: false, message: "User not found" });
+  }
+
+  // Update user's data
+  if (username) user.username = username;
+  if (email) user.email = email;
+
+  res.json({ success: true, message: "Profile updated successfully", user: { username: user.username, email: user.email } });
+});
+
+// Recipes API with authentication
 
 // Add a new recipe
-app.post("/recipes", (req, res) => {
+app.post("/recipes", authenticateToken, (req, res) => {
   const newRecipe = {
     id: recipes.length + 1,
+    userId: req.user.id, // Associate the recipe with the authenticated user
     title: req.body.title,
     description: req.body.description,
     ingredients: req.body.ingredients,
@@ -74,82 +119,22 @@ app.post("/recipes", (req, res) => {
     difficulty: req.body.difficulty,
   };
   recipes.push(newRecipe);
-  res.status(201).json({
-    success: true,
-    message: "Recipe added successfully",
-    data: newRecipe,
-  });
+  res.status(201).json({ success: true, message: "Recipe added successfully", data: newRecipe });
 });
 
-// Update an existing recipe
-app.put("/recipes/:id", (req, res) => {
-  const recipe = recipes.find((r) => r.id === parseInt(req.params.id));
-  if (!recipe) {
-    return res.status(404).json({ success: false, message: "Recipe not found" });
-  }
-  recipe.title = req.body.title || recipe.title;
-  recipe.description = req.body.description || recipe.description;
-  recipe.ingredients = req.body.ingredients || recipe.ingredients;
-  recipe.instructions = req.body.instructions || recipe.instructions;
-  recipe.category = req.body.category || recipe.category;
-  recipe.prepTime = req.body.prepTime || recipe.prepTime;
-  recipe.difficulty = req.body.difficulty || recipe.difficulty;
-
-  res.json({
-    success: true,
-    message: "Recipe updated successfully",
-    data: recipe,
-  });
+// Get all recipes
+app.get("/recipes", (req, res) => {
+  res.json({ success: true, data: recipes });
 });
 
-// Delete a recipe
-app.delete("/recipes/:id", (req, res) => {
-  const recipeIndex = recipes.findIndex((r) => r.id === parseInt(req.params.id));
+// Delete a recipe (only the creator can delete)
+app.delete("/recipes/:id", authenticateToken, (req, res) => {
+  const recipeIndex = recipes.findIndex((r) => r.id === parseInt(req.params.id) && r.userId === req.user.id);
   if (recipeIndex === -1) {
-    return res.status(404).json({ success: false, message: "Recipe not found" });
+    return res.status(404).json({ success: false, message: "Recipe not found or not authorized" });
   }
   recipes.splice(recipeIndex, 1);
-  res.json({
-    success: true,
-    message: "Recipe deleted successfully",
-  });
-});
-
-// User API
-
-// Get user favorites
-app.get("/users/:username/favorites", (req, res) => {
-  const user = users.find((u) => u.username === req.params.username);
-  if (!user) {
-    return res.status(404).json({ success: false, message: "User not found" });
-  }
-  const favoriteRecipes = user.favorites.map((id) =>
-    recipes.find((r) => r.id === id)
-  );
-  res.json({
-    success: true,
-    data: favoriteRecipes,
-  });
-});
-
-// Add a recipe to user's favorites
-app.post("/users/:username/favorites", (req, res) => {
-  const user = users.find((u) => u.username === req.params.username);
-  if (!user) {
-    return res.status(404).json({ success: false, message: "User not found" });
-  }
-  const recipeId = parseInt(req.body.recipeId);
-  if (!recipes.find((r) => r.id === recipeId)) {
-    return res.status(404).json({ success: false, message: "Recipe not found" });
-  }
-  if (!user.favorites.includes(recipeId)) {
-    user.favorites.push(recipeId);
-  }
-  res.json({
-    success: true,
-    message: "Recipe added to favorites",
-    data: user.favorites,
-  });
+  res.json({ success: true, message: "Recipe deleted successfully" });
 });
 
 // Start the server
