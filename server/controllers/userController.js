@@ -2,6 +2,8 @@ const User = require('../models/userModel');
 const jwt = require("jsonwebtoken"); // For authentication
 const bcrypt = require("bcrypt"); // For password hashing
 
+const SECRET_KEY = process.env.SECRET_KEY;
+
 // Create a new recipe
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -39,6 +41,53 @@ const registerUser = async (req, res) => {
   }
 };
 
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Access token required" });
+  }
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: "Invalid token" });
+    }
+    req.user = user; // Attach user data to the request
+    next();
+  });
+};
+
+const loginUser = async (req, res) => {
+  const { username, email, password } = req.body;
+  console.log(`Login user: ${username} | ${email} | ${password}`);
+  let user = null;
+  if (username) {
+    user = await User.findOne({username: username}).exec();
+  }
+  else if (email) {
+    user = await User.findOne({email: email}).exec();
+  }
+
+  if (!user) {
+    res.status(400).json({ message: "User not found" });
+    return;
+  }
+
+  // Check password
+  const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
+  if (!isPasswordValid) {
+    res.status(400).json({ message: "Password doesn't match" });
+    return;
+  }
+
+  // Generate a JWT
+  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
+
+  res.status(200).json({ message: "Login successful", token });
+};
+
 module.exports = {
   registerUser,
+  loginUser
 };
