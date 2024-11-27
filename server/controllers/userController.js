@@ -51,7 +51,8 @@ const authenticateToken = (req, res, next) => {
 
   jwt.verify(token, SECRET_KEY, (err, user) => {
     if (err) {
-      return res.status(403).json({ success: false, message: "Invalid token" });
+      res.status(401).json({ success: false, message: "Invalid token" });
+      return;
     }
     req.user = user; // Attach user data to the request
     next();
@@ -70,24 +71,40 @@ const loginUser = async (req, res) => {
   }
 
   if (!user) {
-    res.status(400).json({ message: "User not found" });
+    res.status(401).json({ message: "User not found" });
     return;
   }
 
   // Check password
   const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
   if (!isPasswordValid) {
-    res.status(400).json({ message: "Password doesn't match" });
+    res.status(401).json({ message: "Password doesn't match" });
     return;
   }
 
   // Generate a JWT
-  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
+  const token = jwt.sign({ id: user._id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
 
   res.status(200).json({ message: "Login successful", token });
 };
 
+const getUserProfile = async (req, res) => {
+  const { username, email, password } = req.user;
+  console.log(`Get user profile: ${username} | ${email} | ${password}`);
+  if (!username) {
+    res.status(400).json({message: "Bad request: Username missing"});
+    return
+  }
+  const user = await User.findOne({username: username}).exec();
+  if (!user) {
+    return res.status(401).json({ message: "User not found" });
+  }
+  res.status(200).json({ user: { id: user._id, username: user.username, email: user.email, favorites: user.favorites } });
+};
+
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  authenticateToken,
+  getUserProfile
 };
