@@ -6,18 +6,13 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect('mongodb://localhost:27017/recipe-hub').then(() => console.log('Connected to MongoDB'))
+mongoose.connect(process.env.CONNECTION_STRING).then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// In-Memory Data
-const users = [];
-const recipes = [];
-const SECRET_KEY = "supersecretkey"; // Secret for signing JWTs
 
 // Routes
 const recipeRoutes = require('./routes/recipeRoutes');
