@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken"); // For authentication
 const bcrypt = require("bcrypt"); // For password hashing
 
 const SECRET_KEY = process.env.SECRET_KEY;
+const allowedUpdates = ["email", "hashedPassword"];
 
 // Create a new recipe
 const registerUser = async (req, res) => {
@@ -25,15 +26,15 @@ const registerUser = async (req, res) => {
       }
       else {
         let hashedPassword = "";
-      try {
-        hashedPassword = await bcrypt.hash(password, 10);
-      } catch (hashErr) {
-        res.status(500).json({message: "Bcrypt error", error: hashErr});
-        return;
-      }
-      newUser.hashedPassword = hashedPassword;
-      await newUser.save();
-      res.status(200).json({message: "User created"});
+        try {
+          hashedPassword = await bcrypt.hash(password, 10);
+        } catch (hashErr) {
+          res.status(500).json({message: "Bcrypt error", error: hashErr});
+          return;
+        }
+        newUser.hashedPassword = hashedPassword;
+        await newUser.save();
+        res.status(200).json({message: "User created"});
       }
     }
   } catch (error) {
@@ -102,9 +103,47 @@ const getUserProfile = async (req, res) => {
   res.status(200).json({ user: { id: user._id, username: user.username, email: user.email, favorites: user.favorites } });
 };
 
+const updateUserProfile = async (req, res) => {
+  const { id, username} = req.user;
+  const { email, hashedPassword } = req.body;
+  
+  console.log(`Update user: ${id} | ${username} | ${email} | ${hashedPassword}`);
+
+  let requestedUpdates = {};
+  allowedUpdates.forEach((field) => {
+    if (req.body[field]) {
+      requestedUpdates[field] = req.body[field];
+    }
+  });
+  if (requestedUpdates.hashedPassword) {
+    let hashedPassword = requestedUpdates.hashedPassword;
+    try {
+      hashedPassword = await bcrypt.hash(hashedPassword, 10);
+      requestedUpdates.hashedPassword = hashedPassword;
+    } catch (hashErr) {
+      res.status(500).json({message: "Bcrypt error", error: hashErr.message});
+      return;
+    }
+  }
+  console.log(JSON.stringify(requestedUpdates));
+  try
+  {
+    const updatedUser = await User.findByIdAndUpdate(id, requestedUpdates, {new: true});
+    if (!updatedUser) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    res.status(200).json({ message: "Profile updated successfully", user: { username: updatedUser.username, email: updatedUser.email } });
+  } catch (updateErr) {
+    res.status(500).json({ message: "Error updating user", error: updateErr.message });
+    return;
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   authenticateToken,
-  getUserProfile
+  getUserProfile,
+  updateUserProfile
 };
