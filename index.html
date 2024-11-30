@@ -8,9 +8,12 @@
 </head>
 <body>
     <header>
-        <h1><a href="index.html">Benny's Kitchen</a></h1>
+        <div class="logo-title">
+            <img src="Chef Benny.png" alt="Chef Benny" class="site-logo">
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">Benny's Kitchen</h1>
         <button onclick="openModal('search-modal')">Search Recipes</button>
         <button onclick="openModal('signup-modal')">Sign Up / Log In</button>
+        </div>
     </header>
 
     <main>
@@ -26,6 +29,13 @@
             </div>
             <!-- Add more recipes here -->
         </div>
+
+        <!-- Recent Recipes Section -->
+        <section id="recent-recipes">
+            <h2>Recent Recipes</h2>
+            <div class="recipe-grid" id="recent-recipe-grid">
+            </div>
+        </section>
     </main>
 
     <button id="add-recipe" onclick="openModal('add-recipe-modal')">+</button>

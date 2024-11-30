@@ -7,32 +7,40 @@ body {
     color: #333;
 }
 
-header h1 a {
-    color: white;
-    text-decoration: none;
-}
-
-header h1 a:hover {
-    text-decoration: underline;
-}
-
 header {
     background-color: #ff6f61;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Logo and title container */
+.logo-title {
+    display: flex;
+    align-items: center;
+}
+
+/* Site Logo */
+.site-logo {
+    width: 100px; /* Adjust size as needed */
+    height: 100px;
+    margin-right: 15px;
+    object-fit: contain; /* Ensure it fits nicely */
+}
+
+/* Title */
 header h1 {
+    font-size: 50px;
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    font-size: 24px;
+    cursor: pointer;
 }
 
 header button, header input {
-    font-size: 16px;
-    margin-left: 10px;
+    font-size: 20px;
+    margin-left: 200px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -150,6 +158,43 @@ h2 {
 .recipe p {
     margin: 10px;
     font-weight: bold;
+    color: #333;
+}
+
+/* General Recipe Grid Styling */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Recipe Card */
+.recipe-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: scale(1.05);
+}
+
+/* Recipe Card Image */
+.recipe-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* Recipe Card Title */
+.recipe-card h3 {
+    margin: 10px;
+    font-size: 18px;
+    text-align: center;
     color: #333;
 }
 
