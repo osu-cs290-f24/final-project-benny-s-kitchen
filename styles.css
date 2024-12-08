@@ -8,8 +8,8 @@ body {
 }
 
 header {
-    background-color: #ff6f61;
-    color: #fff;
+    background-color: #dc4405;
+    color: black;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -48,7 +48,7 @@ header button, header input {
 
 header button {
     background-color: #fff;
-    color: #ff6f61;
+    color: #dc4405;
     cursor: pointer;
 }
 
@@ -67,7 +67,7 @@ main {
 }
 
 h2 {
-    color: #ff6f61;
+    color: #dc4405;
     font-size: 28px;
     margin-bottom: 20px;
 }
@@ -90,13 +90,13 @@ h2 {
 }
 
 .search-bar:focus {
-    border-color: #ff6f61;
+    border-color: #dc4405;
     box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
 }
 
 /* Stylish Search Button */
 .search-button {
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -112,7 +112,7 @@ h2 {
 
 /* Filter Button */
 .filter-button {
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -203,7 +203,7 @@ h2 {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: #fff;
     font-size: 24px;
     width: 50px;
@@ -238,7 +238,7 @@ form input, form textarea, form button {
 }
 
 form button {
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -273,7 +273,7 @@ form label {
 
 /* Bookmark Button */
 #bookmark-btn {
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -301,7 +301,7 @@ form label input {
 form button {
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #ff6f61;
+    background-color: #dc4405;
     color: white;
     border: none;
     border-radius: 5px;
@@ -324,7 +324,7 @@ select {
 }
 
 select:focus {
-    border-color: #ff6f61;
+    border-color: #dc4405;
     outline: none;
 }
 
@@ -354,7 +354,7 @@ select:focus {
 
 .modal-content h2 {
     margin-top: 0;
-    color: #ff6f61;
+    color: #dc4405;
 }
 
 .close {
