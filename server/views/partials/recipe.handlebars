@@ -1,4 +1,6 @@
-<div class="recipe" onclick="openModal('recipe-modal')">
-    <img src="{{images.[0]}}" alt="{{title}}">
-    <p>{{title}}</p>
+<div class="recipe" data-id={{_id}}>
+    <a href="/recipes/{{_id}}">
+        <img src="{{images.[0]}}" alt="{{title}}">
+        <p>{{title}}</p>
+    </a>
 </div>

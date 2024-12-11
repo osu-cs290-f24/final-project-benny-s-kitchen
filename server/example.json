@@ -1,0 +1,280 @@
+[
+    {
+        "title": "Classic Pancakes",
+        "description": "Fluffy, golden pancakes perfect for breakfast.",
+        "ingredients": [
+            "1 cup flour",
+            "2 tablespoons sugar",
+            "1 teaspoon baking powder",
+            "1/2 teaspoon salt",
+            "1 cup milk",
+            "1 egg",
+            "2 tablespoons butter, melted"
+        ],
+        "instructions": [
+            "Mix all dry ingredients in a bowl.",
+            "Whisk in the milk, egg, and melted butter until smooth.",
+            "Heat a non-stick skillet and pour 1/4 cup of batter for each pancake.",
+            "Cook until bubbles form, flip, and cook until golden."
+        ],
+        "images": [
+            "https://example.com/pancakes.jpg"
+        ],
+        "categoryTags": [
+            "Breakfast",
+            "Sweet"
+        ],
+        "mealType": "breakfast",
+        "preparationTime": 20,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Spaghetti Bolognese",
+        "description": "A rich and hearty Italian pasta dish.",
+        "ingredients": [
+            "200g spaghetti",
+            "1 tablespoon olive oil",
+            "1 onion, diced",
+            "2 garlic cloves, minced",
+            "400g ground beef",
+            "1 can crushed tomatoes",
+            "1 teaspoon dried oregano",
+            "Salt and pepper to taste"
+        ],
+        "instructions": [
+            "Cook spaghetti according to package instructions.",
+            "Heat olive oil in a pan and sauté onion and garlic.",
+            "Add ground beef and cook until browned.",
+            "Stir in crushed tomatoes and oregano, simmer for 15 minutes.",
+            "Serve sauce over spaghetti."
+        ],
+        "images": [
+            "https://example.com/spaghetti.jpg"
+        ],
+        "categoryTags": [
+            "Italian",
+            "Pasta",
+            "Dinner"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 30,
+        "difficulty": "medium"
+    },
+    {
+        "title": "Caesar Salad",
+        "description": "A classic salad with crisp romaine and creamy dressing.",
+        "ingredients": [
+            "1 head romaine lettuce",
+            "1/2 cup croutons",
+            "1/4 cup grated Parmesan cheese",
+            "Caesar dressing"
+        ],
+        "instructions": [
+            "Wash and chop romaine lettuce.",
+            "Toss lettuce with croutons, Parmesan cheese, and Caesar dressing.",
+            "Serve immediately."
+        ],
+        "images": [
+            "https://example.com/caesar-salad.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Salad",
+            "Quick"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 10,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Chicken Curry",
+        "description": "A flavorful and spicy Indian-style curry.",
+        "ingredients": [
+            "500g chicken thighs, diced",
+            "1 onion, diced",
+            "2 garlic cloves, minced",
+            "1 tablespoon curry powder",
+            "1 can coconut milk",
+            "1 tablespoon vegetable oil"
+        ],
+        "instructions": [
+            "Heat oil in a pan and sauté onion and garlic until softened.",
+            "Add chicken and cook until browned.",
+            "Stir in curry powder and cook for 1 minute.",
+            "Pour in coconut milk and simmer for 20 minutes.",
+            "Serve with rice."
+        ],
+        "images": [
+            "https://example.com/chicken-curry.jpg"
+        ],
+        "categoryTags": [
+            "Indian",
+            "Spicy"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 40,
+        "difficulty": "medium"
+    },
+    {
+        "title": "Grilled Cheese Sandwich",
+        "description": "A simple and comforting cheesy sandwich.",
+        "ingredients": [
+            "2 slices bread",
+            "2 slices cheese",
+            "1 tablespoon butter"
+        ],
+        "instructions": [
+            "Butter one side of each bread slice.",
+            "Place cheese between unbuttered sides of the bread.",
+            "Heat a skillet and grill sandwich on both sides until golden brown."
+        ],
+        "images": [
+            "https://example.com/grilled-cheese.jpg"
+        ],
+        "categoryTags": [
+            "Snack",
+            "Comfort Food"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 10,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Vegetable Stir-Fry",
+        "description": "A quick and healthy stir-fry with mixed vegetables.",
+        "ingredients": [
+            "1 bell pepper, sliced",
+            "1 cup broccoli florets",
+            "1 carrot, julienned",
+            "2 tablespoons soy sauce",
+            "1 tablespoon sesame oil"
+        ],
+        "instructions": [
+            "Heat sesame oil in a wok or pan.",
+            "Add vegetables and stir-fry for 5-7 minutes.",
+            "Add soy sauce and toss to coat.",
+            "Serve hot."
+        ],
+        "images": [
+            "https://example.com/vegetable-stir-fry.jpg"
+        ],
+        "categoryTags": [
+            "Vegan",
+            "Healthy",
+            "Quick"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 15,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Chocolate Cake",
+        "description": "A rich and moist chocolate cake for dessert.",
+        "ingredients": [
+            "1 3/4 cups flour",
+            "1 1/2 cups sugar",
+            "3/4 cup cocoa powder",
+            "1 1/2 teaspoons baking soda",
+            "1/2 teaspoon salt",
+            "2 eggs",
+            "1 cup buttermilk",
+            "1/2 cup vegetable oil"
+        ],
+        "instructions": [
+            "Preheat oven to 350°F (175°C).",
+            "Mix dry ingredients in a bowl.",
+            "Add eggs, buttermilk, and oil; mix until smooth.",
+            "Pour batter into a greased pan and bake for 30-35 minutes."
+        ],
+        "images": [
+            "https://example.com/chocolate-cake.jpg"
+        ],
+        "categoryTags": [
+            "Dessert",
+            "Sweet"
+        ],
+        "mealType": "dessert",
+        "preparationTime": 45,
+        "difficulty": "medium"
+    },
+    {
+        "title": "Avocado Toast",
+        "description": "A simple and healthy avocado spread on toast.",
+        "ingredients": [
+            "1 avocado",
+            "2 slices bread",
+            "1 teaspoon lemon juice",
+            "Salt and pepper to taste"
+        ],
+        "instructions": [
+            "Toast the bread.",
+            "Mash avocado with lemon juice, salt, and pepper.",
+            "Spread avocado mixture on toast and serve."
+        ],
+        "images": [
+            "https://example.com/avocado-toast.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Quick",
+            "Breakfast"
+        ],
+        "mealType": "breakfast",
+        "preparationTime": 10,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Beef Tacos",
+        "description": "Delicious tacos with seasoned beef and toppings.",
+        "ingredients": [
+            "500g ground beef",
+            "1 taco seasoning packet",
+            "8 taco shells",
+            "1 cup shredded lettuce",
+            "1/2 cup shredded cheese",
+            "1/2 cup diced tomatoes"
+        ],
+        "instructions": [
+            "Cook ground beef in a skillet and add taco seasoning.",
+            "Warm taco shells according to package instructions.",
+            "Fill shells with beef and desired toppings."
+        ],
+        "images": [
+            "https://example.com/beef-tacos.jpg"
+        ],
+        "categoryTags": [
+            "Mexican",
+            "Quick"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 25,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Tomato Soup",
+        "description": "A comforting, creamy tomato soup.",
+        "ingredients": [
+            "1 can crushed tomatoes",
+            "1 cup vegetable broth",
+            "1/2 cup cream",
+            "1 onion, diced",
+            "1 tablespoon olive oil"
+        ],
+        "instructions": [
+            "Heat oil in a pot and sauté onion until softened.",
+            "Add crushed tomatoes and vegetable broth, bring to a boil.",
+            "Simmer for 10 minutes, then blend until smooth.",
+            "Stir in cream and serve."
+        ],
+        "images": [
+            "https://example.com/tomato-soup.jpg"
+        ],
+        "categoryTags": [
+            "Soup",
+            "Comfort Food"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 20,
+        "difficulty": "easy"
+    }
+]
