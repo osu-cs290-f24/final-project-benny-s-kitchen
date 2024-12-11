@@ -43,7 +43,7 @@ a.navbar-brand img {
 /* Title */
 header h1 {
     font-size: 50px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'georgia', serif;
     margin: 0;
     cursor: pointer;
 }
@@ -380,3 +380,35 @@ select:focus {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Recipe Page */
+.recipe-page {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: center;  
+    padding: 20px;  
+ }  
+   
+ /* Recipe Page Header */  
+ .recipe-page-header {  
+    display: flex;  
+    justify-content: space-between;  
+    align-items: center;  
+    width: 100%;  
+    margin-bottom: 20px;  
+ }  
+   
+ .recipe-page-header h1 {  
+    font-size: 36px;  
+    color: #dc4405;  
+    margin: 0;  
+ }  
+   
+ /* Recipe Page Image */  
+ .recipe-page-image {  
+    width: 50%;  
+    height: 500px;  
+    object-fit: contain;  
+    border-radius: 10px;  
+    margin-bottom: 20px;  
+ }  
