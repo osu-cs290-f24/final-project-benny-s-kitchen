@@ -1,0 +1,21 @@
+<div id="recipe-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('recipe-modal')">&times;</span>
+        <h2>{{title}}</h2>
+        <img src={{images.[0]}} alt="{{title}}">
+        <button id="bookmark-btn" onclick="toggleBookmark()">Bookmark Recipe</button>
+        <p>{{description}}</p>
+        <h3>Ingredients</h3>
+        <ul>
+            {{#each ingredients}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <h3>Instructions</h3>
+        <ul>
+            {{#each Instructions}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
