@@ -4,23 +4,36 @@
         <span class="close" id="close-search-modal">&times;</span>
         <h2>Search Recipes</h2>
         <form id="search-filters">
-        <!-- Stylish Search Bar -->
-        <div class="search-bar-container">
-            <input type="text" placeholder="Search for recipes..." id="search-query" name="search-query"
-                class="search-bar">
-            <button class="search-button" onclick="applyFilters()">🔍</button>
-        </div>
+            <!-- Stylish Search Bar -->
+            <div class="search-bar-container">
+                <input type="text" placeholder="Search for recipes..." id="search-query" name="search-query"
+                    class="search-bar">
+                <button class="search-button" onclick="applyFilters()">🔍</button>
+            </div>
 
-        <h3>Filters</h3>
+            <h3>Filters</h3>
             <!-- Dropdown Menu -->
-            <h4>Meal Type</h4>
-            <select id="meal-type" name="meal-type">
-                <option value="">-- Select Meal Type --</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-                <option value="dessert">Dessert</option>
-            </select>
+            <div id="difficulty-mealtype">
+                <div>
+                    <h4>Meal Type</h4>
+                    <select id="meal-type" name="meal-type">
+                        <option value="">-- Select Meal Type --</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="dessert">Dessert</option>
+                    </select>
+                </div>
+                <div>
+                    <h4>Difficulty</h3>
+                    <select id="search-difficulty" name="difficulty">
+                        <option value="">-- Select Difficulty --</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
 
             <h4>Preparation time</h4>
             <div id="preptime-filter">

@@ -288,6 +288,17 @@ form div#difficulty-preptime input {
     width: 90%;
 }
 
+form div#difficulty-mealtype {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1%;
+}
+form div#difficulty-mealtype div {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
 form div.category-checkboxes {
     display: flex;
     flex-direction: row;
