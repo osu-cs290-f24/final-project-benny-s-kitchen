@@ -261,7 +261,7 @@ function matchRecipe(recipe_data, filters, debug = false) {
   }
   const preptimeMatch = filters["preparationTimeMin"] ? (recipe_data["preptime"] >= filters["preparationTimeMin"]) && (recipe_data["preptime"] <= filters["preparationTimeMax"]) : true;
   const titleMatch = filters.title ? (recipe_data.title.includes(filters.title)) : true;
-  const categoryMatch = filters.categoryTags ? (filters.categoryTags.filter(value => recipe_data.categoryTags.includes(value))) : true;
+  const categoryMatch = (filters.categoryTags.length > 0) ? ((filters.categoryTags.filter(value => recipe_data.categoryTags.includes(value))).length > 0) : true;
   const mealTypeMatch = filters.mealType ? (filters.mealType === recipe_data.mealType) : true;
   const difficultyMatch = filters.difficulty ? (filters.difficulty === recipe_data.difficulty) : true;
   if (debug) {
