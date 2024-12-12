@@ -172,14 +172,9 @@ app.put('/recipes/:id', upload.single("image"), async function (req, res, next) 
     console.log(req.body)
     try {
         const recipe_data = req.body;
-        if (recipe_data.ingredients)
-        {
-            recipe_data.ingredients = recipe_data.ingredients.split(',')
-        }
-        if (recipe_data.instructions)
-        {
-            recipe_data.instructions = recipe_data.instructions.split(',')
-        }
+        recipe_data.ingredients = JSON.parse(recipe_data.ingredients)
+        recipe_data.instructions = JSON.parse(recipe_data.instructions)
+        recipe_data.categoryTags = JSON.parse(recipe_data.categoryTags)
         const put_response = await fetch(`${db_host}/recipes/${id}`,
             {
                 method: "PUT",
