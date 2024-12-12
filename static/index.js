@@ -152,9 +152,9 @@ $("#add-recipe-form").on("submit", async function (event) {
   // Append form fields to FormData
   formData.append('title', title);
   formData.append('description', description);
-  formData.append('ingredients', ingredients);
-  formData.append('instructions', instructions);
-  formData.append('categoryTags', categoryTags);
+  formData.append('ingredients', JSON.stringify(ingredients));
+  formData.append('instructions', JSON.stringify(instructions));
+  formData.append('categoryTags', JSON.stringify(categoryTags));
   formData.append('preparationTime', preparationTime);
   formData.append('difficulty', difficulty);
   formData.append('mealType', mealType);
