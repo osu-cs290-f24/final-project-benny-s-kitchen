@@ -5,6 +5,7 @@ const multer = require('multer');
 const upload = multer();
 var exphbs = require('express-handlebars')
 var ImageKit = require("imagekit");
+var Handlebars = require("handlebars")
 
 var app = express()
 var port = process.env.SERVER_PORT || 3000
@@ -24,6 +25,9 @@ var imagekit = new ImageKit({
     urlEndpoint: process.env.IMAGEKIT_ENDPOINT
 });
 
+Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 
 app.get('/', async function (req, res, next) {
     const recipe_request = await fetch(
@@ -94,6 +98,8 @@ app.post('/recipes', upload.single("image"), async function (req, res, next) {
     console.log(req.body)
     try {
         const recipe_data = req.body;
+        recipe_data.ingredients = recipe_data.ingredients.split(',')
+        recipe_data.instructions = recipe_data.instructions.split(',')
         const post_response = await fetch(`${db_host}/recipes`,
             {
                 method: "POST",
@@ -117,12 +123,7 @@ app.post('/recipes', upload.single("image"), async function (req, res, next) {
                     file: req.file.buffer,
                     fileName: filename,
                     folder: folder
-                })/*.then(response => {
-                    console.log(response);
-                    imgkit_response = response
-                }).catch(error => {
-                    console.log(error);
-                });*/
+                })
                 console.log(imgkit_response)
                 let put_body = {
                     "images": [imgkit_response.url]
@@ -144,6 +145,94 @@ app.post('/recipes', upload.single("image"), async function (req, res, next) {
     } catch (error) {
         console.log(error);
         res.status(400).json({ message: 'Error creating recipe', error: error.message });
+    }
+})
+
+app.put('/recipes/:id', upload.single("image"), async function (req, res, next) {
+    const {id} = req.params;
+    console.log(`=== PUT Received ${id}`)
+    console.log(req.body)
+    try {
+        const recipe_data = req.body;
+        if (recipe_data.ingredients)
+        {
+            recipe_data.ingredients = recipe_data.ingredients.split(',')
+        }
+        if (recipe_data.instructions)
+        {
+            recipe_data.instructions = recipe_data.instructions.split(',')
+        }
+        const put_response = await fetch(`${db_host}/recipes/${id}`,
+            {
+                method: "PUT",
+                body: JSON.stringify(recipe_data),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+        )
+        let put_response_json = await put_response.json()
+        if (put_response.status === 200) {
+            if (req.file) {
+                console.log("=== PUT: Recipe created. Uploading image")
+                let folder = put_response_json.recipe._id
+                let filename = req.file.originalname.trim().replace(/\s+/g, '_')
+                console.log(put_response_json)
+                console.log(`${folder}/${filename}`)
+            
+                console.log("=== PUT: Image found")
+                let imgkit_response = {default: "Default"}
+                imgkit_response = await imagekit.upload({
+                    file: req.file.buffer,
+                    fileName: filename,
+                    folder: folder
+                })
+                console.log(imgkit_response)
+                let put_body = {
+                    "images": [imgkit_response.url]
+                }
+                console.log(`${db_host}/recipes/${folder}`)
+                console.log(put_body)
+                await fetch(`${db_host}/recipes/${folder}`, 
+                    {
+                        method: "PUT",
+                        body: JSON.stringify(put_body),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                )
+            }
+        }
+        res.status(put_response.status).json(put_response_json)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error creating recipe', error: error.message });
+    }
+})
+
+app.delete('/recipes/:id', async function (req, res, next) {
+    const {id} = req.params;
+    console.log(`=== DELETE Received ${id}`);
+    try {
+        const delete_response = await fetch(`${db_host}/recipes/${id}`,
+            {
+                method: "DELETE",
+            }
+        )
+        let delete_response_json = await delete_response.json();
+        if (delete_response.status === 200) {
+            let folderPath = `${id}/`
+            let response = await imagekit.deleteFolder(folderPath);
+            console.log(response)
+            if (response.$ResponseMetadata.statusCode != 204) {
+                return res.status(500).json({ message: 'Error deleting recipe', error: response.$ResponseMetadata });
+            }
+        }
+        res.status(delete_response.status).json(delete_response_json)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error deleting recipe', error: error.message });
     }
 })
 

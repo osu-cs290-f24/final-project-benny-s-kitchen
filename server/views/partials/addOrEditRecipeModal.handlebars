@@ -1,0 +1,83 @@
+<div id="add-recipe-modal" class="modal hidden">
+    <mode>{{mode}}</mode>
+    <div class="modal-content">
+        <span class="close" id="close-add-recipe-modal">&times;</span>
+        {{#ifEquals mode "add"}}
+        <h2>Add a New Recipe</h2>
+        {{/ifEquals}}
+        {{#ifEquals mode "edit"}}
+        <h2>Edit recipe</h2>
+        {{/ifEquals}}
+        <form id="add-recipe-form">
+            <input type="text" name="title" placeholder="Recipe Name" required>
+            <input type="file" name="image" accept="image/*">
+            <textarea name="description" placeholder="Recipe Description" required></textarea>
+            <h3>Ingredients</h3>
+            <div id="ingredientsContainer">
+                <div class="field-group">
+                    <input type="text" name="ingredient[]" placeholder="e.g. 2 cups flour" required />
+                    <span class="remove-field" style="display:none;">X</span>
+                </div>
+            </div>
+            <button type="button" id="add-ingredient-button">Add Ingredient</button>
+
+            <h3>Instructions</h3>
+            <div id="instructionsContainer">
+                <div class="field-group">
+                    <input type="text" name="instruction[]" placeholder="e.g. Preheat oven to 350°F" required />
+                    <span class="remove-field" style="display:none;">X</span>
+                </div>
+            </div>
+            <button type="button" id="add-instruction-button">Add Instruction</button>
+
+            <!-- Dropdown Menu  -->
+            <div id="difficulty-preptime">
+                <div>
+                    <h3>Difficulty</h3>
+                    <select id="difficulty" name="difficulty">
+                        <option value="">-- Select Difficulty --</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div>
+                    <h3>Prep time in minutes</h3>
+                    <input type="numeric" inputmode="numeric" name="preptime" pattern="^\d+$"
+                        placeholder="Preparation Time" required>
+                </div>
+            </div>
+
+            <h3>Categories</h3>
+            <div class="category-checkboxes" id="add-categories">
+                <label>
+                    <input type="checkbox" name="category" value="healthy"> Healthy
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="vegan"> Vegan
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="gluten-free"> Gluten-Free
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="quick_meals"> Quick Meals
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="desserts"> Desserts
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="comfort_food"> Comfort Food
+                </label>
+            </div>
+            <h4>Meal Type</h4>
+            <select id="meal-type" name="meal-type">
+                <option value="">-- Select Meal Type --</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+            </select>
+            <button id="add-recipe-button" type="submit">Submit</button>
+        </form>
+    </div>
+</div>

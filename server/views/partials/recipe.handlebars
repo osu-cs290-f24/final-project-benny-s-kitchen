@@ -1,4 +1,11 @@
-<div class="recipe" data-id={{_id}}>
+<div class="recipe" 
+    data-id={{_id}}
+    data-title="{{title}}"
+    data-preptime="{{preparationTime}}" 
+    data-categoryTags="{{#each categoryTags}}{{this}} {{/each}}"
+    data-mealType="{{mealType}}"
+    data-difficulty="{{difficulty}}"
+>
     <a href="/recipes/{{_id}}">
         <img src="{{images.[0]}}" alt="{{title}}">
         <p>{{title}}</p>

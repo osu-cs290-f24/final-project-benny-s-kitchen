@@ -1,20 +1,41 @@
 <main>
-    <div class="full-recipe">
-        <h1>{{title}}</h1>
-        <p>Preparation Time: {{preparationTime}}    Difficulty: {{difficulty}}</p>
-        <img src={{images.[0]}} alt="{{title}}">
-        <p>{{description}}</p>
-        <h2>Ingredients</h2>
-        <ul>
-            {{#each ingredients}}
+    <div class="full-recipe" data-id={{_id}} data-title="{{title}}" data-preptime="{{preparationTime}}"
+        data-categoryTags="{{#each categoryTags}}{{this}} {{/each}}" data-mealType="{{mealType}}"
+        data-difficulty="{{difficulty}}">
+        <div class="recipe-page-header">
+            <h1>{{title}}</h1>
+        </div>
+        <div class="recipe-page-details">
+            <p>Preparation Time: {{preparationTime}} Difficulty: {{difficulty}}</p>
+        </div>
+        <img class="recipe-page-image" src={{images.[0]}} alt="{{title}}">
+        <div class="recipe-page-details">
+            <p1>{{description}}</p1>
+        </div>
+        <div id="recipe-page-ingredients">
+            <h2>Ingredients</h2>
+            <ul>
+                {{#each ingredients}}
                 <li>{{this}}</li>
-            {{/each}}
-        </ul>
-        <h2>Instructions</h2>
-        <ol>
-            {{#each instructions}}
+                {{/each}}
+            </ul>
+        </div>
+        <div id="recipe-page-instructions">
+            <h2>Instructions</h2>
+            <ol>
+                {{#each instructions}}
                 <li>{{this}}</li>
-            {{/each}}
-        </ol>
+                {{/each}}
+            </ol>
+        </div>
     </div>
 </main>
+<footer>
+    <div class="button-container">
+        <button id="edit-recipe-button" class="edit-button">Edit</button>
+        <button id="delete-recipe-button" class="delete-button">Delete</button>
+    </div>
+</footer>
+
+{{> addOrEditRecipeModal mode="edit"}}
+{{> deleteRecipeModal}}
