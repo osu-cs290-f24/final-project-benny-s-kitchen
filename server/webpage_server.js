@@ -29,6 +29,23 @@ Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 
+Handlebars.registerHelper('properCase', function(arg1, options) {
+    let r = '';
+    if (typeof arg1 == 'string') {
+        r = arg1
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+    } 
+    return new Handlebars.SafeString(r);
+})
+
+Handlebars.registerHelper('joinWithComma', function(array) {
+    let r = '';
+    if (Array.isArray(array)) r = array.join(', ');
+    return new Handlebars.SafeString(r);
+});
+
 app.get('/', async function (req, res, next) {
     const recipe_request = await fetch(
         `${db_host}/recipes`
@@ -98,8 +115,9 @@ app.post('/recipes', upload.single("image"), async function (req, res, next) {
     console.log(req.body)
     try {
         const recipe_data = req.body;
-        recipe_data.ingredients = recipe_data.ingredients.split(',')
-        recipe_data.instructions = recipe_data.instructions.split(',')
+        recipe_data.ingredients = JSON.parse(recipe_data.ingredients)
+        recipe_data.instructions = JSON.parse(recipe_data.instructions)
+        recipe_data.categoryTags = JSON.parse(recipe_data.categoryTags)
         const post_response = await fetch(`${db_host}/recipes`,
             {
                 method: "POST",

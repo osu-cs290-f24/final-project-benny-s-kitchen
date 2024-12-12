@@ -251,7 +251,7 @@ form {
 }
 
 form input, form textarea, form button {
-    margin: 10px 5x;
+    margin: 10px 5px;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -460,32 +460,19 @@ select:focus {
 }
 
 /* Full Recipe */
-.full-recipe {  
+.full-recipe {
     display: flex;  
     flex-direction: column;  
     align-items: center;  
-    padding: 20px;  
- }  
-   
- /* Recipe Page Header */  
- .full-recipe-header {  
-    display: flex;  
-    justify-content: space-between;  
-    align-items: center;  
-    width: 100%;  
-    margin-bottom: 20px;  
- }  
-   
- .full-recipe-header h1 {  
-    font-size: 36px;  
-    color: #dc4405;  
-    margin: 0;  
+    padding: 20px;
+    width: 60%;
+    margin: auto;
  }  
 
  /* Recipe Page Details */  
 .recipe-page-details {  
     display: flex;  
-    flex-direction: column;  
+    flex-direction: row;
     align-items: center;  
     padding: 20px;  
     background-color: #fff;  
@@ -493,7 +480,14 @@ select:focus {
     border-radius: 10px;  
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);  
     margin-bottom: 10px;
- }  
+    width: 100%;
+    justify-content: space-around;
+ }
+
+.recipe-page-details#recipe-page-tags {
+    margin-top: 20px;
+    justify-content: left;
+}
    
  .recipe-page-details h2 {  
     font-size: 24px;  
@@ -513,16 +507,25 @@ select:focus {
     color: #555;  
     margin-bottom: 0px;  
     margin-top: 0px;
+    text-align: center;
  }  
    
  /* Recipe Page Image */  
  .recipe-page-image {  
-    width: 50%;  
-    height: 500px;  
+    width: 100%;  
+    height: 600px;  
     object-fit: cover;  
     border-radius: 30px;  
     margin-bottom: -20px;  
  }  
+
+#recipe-page-ingredients-instructions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap:1%;
+    justify-content: space-between;
+}
 
  /* Recipe Page Ingredients */  
 #recipe-page-ingredients {  
@@ -534,18 +537,14 @@ select:focus {
     border: 1px solid #ddd;  
     border-radius: 10px;  
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);  
-    margin-top: 20px;  
+    margin-top: 20px;
+    flex-basis: content;
+    flex-grow: 0;
  }  
    
 #recipe-page-ingredients h2 {  
     font-size: 24px;  
     margin-bottom: 10px;  
- }  
-   
-#recipe-page-ingredients ul {  
-    list-style: none;  
-    padding: 0;  
-    margin: 0;  
  }  
    
 #recipe-page-ingredients li {  
@@ -564,7 +563,9 @@ select:focus {
     border: 1px solid #ddd;  
     border-radius: 10px;  
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);  
-    margin-top: 20px;  
+    margin-top: 20px;
+    flex-basis: content;
+    flex-grow: 1;
  }  
    
 #recipe-page-instructions h2 {  

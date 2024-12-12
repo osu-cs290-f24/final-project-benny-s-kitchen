@@ -6,27 +6,34 @@
             <h1>{{title}}</h1>
         </div>
         <div class="recipe-page-details">
-            <p>Preparation Time: {{preparationTime}} Difficulty: {{difficulty}}</p>
+            <p>Preparation Time: {{preparationTime}} minutes</p>
+            <p>Difficulty: {{#properCase difficulty}} {{/properCase}}</p>
+            <p>Meal type: {{#properCase mealType}} {{/properCase}}</p>
         </div>
         <img class="recipe-page-image" src={{images.[0]}} alt="{{title}}">
         <div class="recipe-page-details">
             <p1>{{description}}</p1>
         </div>
-        <div id="recipe-page-ingredients">
-            <h2>Ingredients</h2>
-            <ul>
-                {{#each ingredients}}
-                <li>{{this}}</li>
-                {{/each}}
-            </ul>
+        <div id="recipe-page-ingredients-instructions">
+            <div id="recipe-page-ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    {{#each ingredients}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div id="recipe-page-instructions">
+                <h2>Instructions</h2>
+                <ol>
+                    {{#each instructions}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ol>
+            </div>
         </div>
-        <div id="recipe-page-instructions">
-            <h2>Instructions</h2>
-            <ol>
-                {{#each instructions}}
-                <li>{{this}}</li>
-                {{/each}}
-            </ol>
+        <div class="recipe-page-details" id="recipe-page-tags">
+            <p>Tags: {{#each categoryTags}} {{#properCase this}} {{/properCase}},  {{/each}}</p>
         </div>
     </div>
 </main>
