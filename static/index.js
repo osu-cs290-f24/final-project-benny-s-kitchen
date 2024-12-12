@@ -259,14 +259,15 @@ function matchRecipe(recipe_data, filters, debug = false) {
     console.log(recipe_data);
     console.log(filters);
   }
-  preptimeMatch = filters["preparationTimeMin"] ? (recipe_data["preptime"] >= filters["preparationTimeMin"]) && (recipe_data["preptime"] <= filters["preparationTimeMax"]) : true;
-  titleMatch = filters.title ? (recipe_data.title.includes(filters.title)) : true;
-  categoryMatch = filters.categoryTags ? (filters.categoryTags.filter(value => recipe_data.categoryTags.includes(value))) : true;
-  mealTypeMatch = filters.mealType ? (filters.mealType === recipe_data.mealType) : true;
+  const preptimeMatch = filters["preparationTimeMin"] ? (recipe_data["preptime"] >= filters["preparationTimeMin"]) && (recipe_data["preptime"] <= filters["preparationTimeMax"]) : true;
+  const titleMatch = filters.title ? (recipe_data.title.includes(filters.title)) : true;
+  const categoryMatch = filters.categoryTags ? (filters.categoryTags.filter(value => recipe_data.categoryTags.includes(value))) : true;
+  const mealTypeMatch = filters.mealType ? (filters.mealType === recipe_data.mealType) : true;
+  const difficultyMatch = filters.difficulty ? (filters.difficulty === recipe_data.difficulty) : true;
   if (debug) {
-    console.log([preptimeMatch, titleMatch, categoryMatch, mealTypeMatch]);
+    console.log([preptimeMatch, titleMatch, categoryMatch, mealTypeMatch, difficultyMatch]);
   }
-  matched = (preptimeMatch && titleMatch && categoryMatch && mealTypeMatch);
+  matched = (preptimeMatch && titleMatch && categoryMatch && mealTypeMatch && difficultyMatch);
   return matched;
 }
 
@@ -276,6 +277,7 @@ $("#search-filters").on("submit", async function (event) {
   const titleQuery = $('#search-filters input[name="search-query"]').val().trim();
 
   const mealTypeQuery = $('#search-filters select[name="meal-type"]').val().trim();
+  const difficultyQuery = $('#search-filters select[name="difficulty"]').val().trim();
 
   const categoryTagsQuery = $('#search-filters input[name="category"]:checked').map(function () {
     return $(this).val().trim();
@@ -289,22 +291,25 @@ $("#search-filters").on("submit", async function (event) {
   let filters = {
     title: titleQuery.toLocaleLowerCase(),
     mealType: mealTypeQuery,
+    difficulty: difficultyQuery,
     categoryTags: categoryTagsQuery,
     preparationTimeMin: preparationTimeMin,
     preparationTimeMax: preparationTimeMax
   }
 
   recipesList.each((index, element) => {
-    recipePreptime = Number($(element).attr('data-preptime'))
-    recipeTitle = $(element).attr('data-title')
+    const recipePreptime = Number($(element).attr('data-preptime'))
+    const recipeTitle = $(element).attr('data-title')
     console.log(recipeTitle)
-    recipeCategoryTags = $(element).attr('data-categorytags').split(' ')
-    recipeMealType = $(element).attr('data-mealtype')
+    const recipeCategoryTags = $(element).attr('data-categorytags').split(' ')
+    const recipeMealType = $(element).attr('data-mealtype')
+    const recipeDifficulty = $(element).attr('data-difficulty')
     let recipeData = {
       preptime: recipePreptime,
       title: recipeTitle.toLocaleLowerCase(),
       categoryTags: recipeCategoryTags,
-      mealType: recipeMealType
+      mealType: recipeMealType,
+      difficulty: recipeDifficulty
     }
     let matched = matchRecipe(recipeData, filters, true)
     if (!matched) {
