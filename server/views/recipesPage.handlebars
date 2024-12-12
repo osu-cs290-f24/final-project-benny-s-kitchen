@@ -1,0 +1,15 @@
+<main>
+    <h2>All Recipes</h2>
+    <div class="recipe-grid" id="all-recipe-grid">
+        {{#each recipes}}
+        {{> recipe}}
+        {{/each}}
+    </div>
+</main>
+
+<button id="add-recipe">+</button>
+
+{{> searchRecipeModal}}
+
+{{> addOrEditRecipeModal mode="add"}}
+

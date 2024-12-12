@@ -1,0 +1,263 @@
+[
+    {
+        "title": "Banana Oatmeal Pancakes",
+        "description": "A healthy and delicious way to start your day with banana and oats.",
+        "ingredients": [
+            "2 ripe bananas",
+            "1 cup rolled oats",
+            "2 eggs",
+            "1 teaspoon vanilla extract",
+            "1/2 teaspoon baking powder"
+        ],
+        "instructions": [
+            "Blend all ingredients until smooth.",
+            "Heat a non-stick skillet and pour 1/4 cup of batter for each pancake.",
+            "Cook until bubbles form, flip, and cook until golden."
+        ],
+        "images": [
+            "https://example.com/banana-pancakes.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Quick Meals"
+        ],
+        "mealType": "breakfast",
+        "preparationTime": 15,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Avocado Toast with Tomato",
+        "description": "Simple and flavorful avocado toast topped with fresh tomato slices.",
+        "ingredients": [
+            "1 avocado",
+            "2 slices whole-grain bread",
+            "1 small tomato",
+            "Salt and pepper to taste"
+        ],
+        "instructions": [
+            "Toast the bread until golden.",
+            "Mash avocado and season with salt and pepper.",
+            "Spread avocado on toast and top with tomato slices."
+        ],
+        "images": [
+            "https://example.com/avocado-toast.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Vegan"
+        ],
+        "mealType": "breakfast",
+        "preparationTime": 10,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Quinoa Salad with Chickpeas",
+        "description": "A light and nutritious quinoa salad loaded with chickpeas and veggies.",
+        "ingredients": [
+            "1 cup cooked quinoa",
+            "1 cup chickpeas",
+            "1 cucumber, diced",
+            "1/2 cup cherry tomatoes, halved",
+            "2 tablespoons olive oil",
+            "1 tablespoon lemon juice"
+        ],
+        "instructions": [
+            "Mix quinoa, chickpeas, cucumber, and tomatoes in a bowl.",
+            "Drizzle with olive oil and lemon juice, then toss to combine.",
+            "Serve chilled or at room temperature."
+        ],
+        "images": [
+            "https://example.com/quinoa-salad.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Vegan"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 20,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Creamy Tomato Soup",
+        "description": "A comforting, gluten-free tomato soup perfect for any meal.",
+        "ingredients": [
+            "1 can crushed tomatoes",
+            "1 cup vegetable broth",
+            "1/2 cup cream",
+            "1 small onion, diced",
+            "1 tablespoon olive oil"
+        ],
+        "instructions": [
+            "Heat olive oil in a pot and sauté onion until soft.",
+            "Add tomatoes and vegetable broth, bring to a boil.",
+            "Simmer for 10 minutes, then blend until smooth.",
+            "Stir in cream and serve hot."
+        ],
+        "images": [
+            "https://example.com/tomato-soup.jpg"
+        ],
+        "categoryTags": [
+            "Comfort Food",
+            "Gluten-Free"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 25,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Grilled Vegetable Wrap",
+        "description": "A quick and healthy vegan wrap loaded with grilled vegetables.",
+        "ingredients": [
+            "1 tortilla wrap",
+            "1/2 cup grilled zucchini",
+            "1/2 cup grilled bell peppers",
+            "2 tablespoons hummus"
+        ],
+        "instructions": [
+            "Spread hummus over the tortilla wrap.",
+            "Layer grilled vegetables on top.",
+            "Roll tightly and cut in half."
+        ],
+        "images": [
+            "https://example.com/veggie-wrap.jpg"
+        ],
+        "categoryTags": [
+            "Quick Meals",
+            "Vegan"
+        ],
+        "mealType": "lunch",
+        "preparationTime": 10,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Baked Salmon with Asparagus",
+        "description": "A healthy and flavorful dinner option with baked salmon and asparagus.",
+        "ingredients": [
+            "2 salmon fillets",
+            "1 bunch asparagus",
+            "2 tablespoons olive oil",
+            "1 teaspoon garlic powder",
+            "Salt and pepper to taste"
+        ],
+        "instructions": [
+            "Preheat oven to 400°F (200°C).",
+            "Place salmon and asparagus on a baking sheet.",
+            "Drizzle with olive oil, season with garlic powder, salt, and pepper.",
+            "Bake for 15-20 minutes or until salmon is cooked through."
+        ],
+        "images": [
+            "https://example.com/baked-salmon.jpg"
+        ],
+        "categoryTags": [
+            "Healthy",
+            "Gluten-Free"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 30,
+        "difficulty": "medium"
+    },
+    {
+        "title": "Chocolate Avocado Mousse",
+        "description": "A creamy and decadent dessert made with avocado and chocolate.",
+        "ingredients": [
+            "2 ripe avocados",
+            "1/2 cup cocoa powder",
+            "1/2 cup maple syrup",
+            "1 teaspoon vanilla extract"
+        ],
+        "instructions": [
+            "Blend all ingredients until smooth.",
+            "Spoon into serving dishes and chill for 1 hour before serving."
+        ],
+        "images": [
+            "https://example.com/chocolate-mousse.jpg"
+        ],
+        "categoryTags": [
+            "Desserts",
+            "Vegan"
+        ],
+        "mealType": "dessert",
+        "preparationTime": 15,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Vegetable Stir-Fry with Rice",
+        "description": "A quick and healthy stir-fry served over rice.",
+        "ingredients": [
+            "1 cup cooked rice",
+            "1 bell pepper, sliced",
+            "1 cup broccoli florets",
+            "2 tablespoons soy sauce",
+            "1 tablespoon sesame oil"
+        ],
+        "instructions": [
+            "Heat sesame oil in a wok and stir-fry vegetables for 5-7 minutes.",
+            "Add soy sauce and cook for 2 more minutes.",
+            "Serve over cooked rice."
+        ],
+        "images": [
+            "https://example.com/stir-fry.jpg"
+        ],
+        "categoryTags": [
+            "Quick Meals",
+            "Vegan"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 20,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Gluten-Free Chocolate Chip Cookies",
+        "description": "Chewy and delicious gluten-free chocolate chip cookies.",
+        "ingredients": [
+            "2 cups gluten-free flour",
+            "1 teaspoon baking soda",
+            "1/2 teaspoon salt",
+            "1 cup chocolate chips",
+            "1 cup butter, melted",
+            "1 cup sugar"
+        ],
+        "instructions": [
+            "Preheat oven to 350°F (175°C).",
+            "Mix all dry ingredients in a bowl.",
+            "Stir in melted butter to form dough.",
+            "Scoop onto a baking sheet and bake for 10-12 minutes."
+        ],
+        "images": [
+            "https://example.com/gluten-free-cookies.jpg"
+        ],
+        "categoryTags": [
+            "Desserts",
+            "Gluten-Free"
+        ],
+        "mealType": "dessert",
+        "preparationTime": 30,
+        "difficulty": "easy"
+    },
+    {
+        "title": "Vegan Mac and Cheese",
+        "description": "A creamy and comforting vegan take on mac and cheese.",
+        "ingredients": [
+            "2 cups elbow pasta",
+            "1 cup cashews, soaked",
+            "1/2 cup nutritional yeast",
+            "1 cup almond milk",
+            "1 teaspoon garlic powder"
+        ],
+        "instructions": [
+            "Cook pasta according to package instructions.",
+            "Blend soaked cashews, nutritional yeast, almond milk, and garlic powder until smooth.",
+            "Pour sauce over cooked pasta and stir to coat."
+        ],
+        "images": [
+            "https://example.com/vegan-mac.jpg"
+        ],
+        "categoryTags": [
+            "Comfort Food",
+            "Vegan"
+        ],
+        "mealType": "dinner",
+        "preparationTime": 30,
+        "difficulty": "medium"
+    }
+]

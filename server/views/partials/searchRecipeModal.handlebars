@@ -1,0 +1,56 @@
+<!-- Search Modal -->
+<div id="search-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" id="close-search-modal">&times;</span>
+        <h2>Search Recipes</h2>
+        <form id="search-filters">
+        <!-- Stylish Search Bar -->
+        <div class="search-bar-container">
+            <input type="text" placeholder="Search for recipes..." id="search-query" name="search-query"
+                class="search-bar">
+            <button class="search-button" onclick="applyFilters()">🔍</button>
+        </div>
+
+        <h3>Filters</h3>
+            <!-- Dropdown Menu -->
+            <h4>Meal Type</h4>
+            <select id="meal-type" name="meal-type">
+                <option value="">-- Select Meal Type --</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+            </select>
+
+            <h4>Preparation time</h4>
+            <div id="preptime-filter">
+                <input type="text" id="preptime-filter-time" readonly="" style="border:0;">
+                <div id="slider-range"></div>
+            </div>
+
+            <h4>Categories</h4>
+            <div class="category-checkboxes" id="category-filter">
+                <label>
+                    <input type="checkbox" name="category" value="healthy"> Healthy
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="vegan"> Vegan
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="gluten-free"> Gluten-Free
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="quick_meals"> Quick Meals
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="desserts"> Desserts
+                </label>
+                <label>
+                    <input type="checkbox" name="category" value="comfort_food"> Comfort Food
+                </label>
+            </div>
+
+            <button type="submit" id="apply-filters-button">Apply Filters</button>
+        </form>
+    </div>
+</div>
