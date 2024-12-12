@@ -287,7 +287,7 @@ $("#search-filters").on("submit", async function (event) {
   let recipesList = $("div.recipe")
 
   let filters = {
-    title: titleQuery,
+    title: titleQuery.toLocaleLowerCase(),
     mealType: mealTypeQuery,
     categoryTags: categoryTagsQuery,
     preparationTimeMin: preparationTimeMin,
@@ -302,7 +302,7 @@ $("#search-filters").on("submit", async function (event) {
     recipeMealType = $(element).attr('data-mealtype')
     let recipeData = {
       preptime: recipePreptime,
-      title: recipeTitle,
+      title: recipeTitle.toLocaleLowerCase(),
       categoryTags: recipeCategoryTags,
       mealType: recipeMealType
     }
